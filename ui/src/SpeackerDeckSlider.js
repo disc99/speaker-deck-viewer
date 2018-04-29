@@ -5,15 +5,24 @@ import axios from 'axios'
 axios.defaults.baseURL = 'https://6nmkgbb8xj.execute-api.ap-northeast-1.amazonaws.com';
 
 export default class SpeackerDeckSlider extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { slides: [] };
+  }
+
   handleChange(e) {
     const url = e.target.value
     console.log(url);
+    let _this = this
     axios.get('/dev/slides', {
       params: {
         url: url
       }
     }).then(function (response) {
-      console.log(response);
+      console.log(response)
+      _this.setState(prevState => ({
+        slides: response.data.slides.map(slide => slide.original)
+      }));
     })
     .catch(function (error) {
       console.log(error);
@@ -34,24 +43,11 @@ export default class SpeackerDeckSlider extends Component {
           <input type="text" onChange={this.handleChange.bind(this)}></input>
         </div>
         <Slider {...settings}>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
+          {this.state.slides.map(slide => {
+            return <div>
+              <img src={slide} />
+            </div>
+          })}
         </Slider>
       </div>
     );
