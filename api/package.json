@@ -1,0 +1,15 @@
+{
+  "name": "speaker-deck-viewer-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "dependencies": {
+    "cheerio-httpcli": "^0.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
