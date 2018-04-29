@@ -1,9 +1,23 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import axios from 'axios'
+
+axios.defaults.baseURL = 'https://6nmkgbb8xj.execute-api.ap-northeast-1.amazonaws.com';
 
 export default class SpeackerDeckSlider extends Component {
   handleChange(e) {
-    console.log(e.target.value);
+    const url = e.target.value
+    console.log(url);
+    axios.get('/dev/slides', {
+      params: {
+        url: url
+      }
+    }).then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   render() {
