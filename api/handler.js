@@ -16,11 +16,13 @@ module.exports.slides = (event, context, callback) => {
       console.log(json)
       const response = {
         statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Origin" : "*"
+        },
         body: json
       };
     
       callback(null, response);
-    
     })
   })
 };

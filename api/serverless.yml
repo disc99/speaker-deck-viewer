@@ -66,6 +66,7 @@ functions:
       - http:
           path: slides
           method: get
+          cors: true
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
 #      - sns: greeter-topic
